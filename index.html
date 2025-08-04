@@ -2,38 +2,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Random Logo</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: transparent;
-        }
-        img {
-            max-width: 200px;
-            height: auto;
-            display: block;
-        }
-    </style>
+    <title>Random Logo Redirect</title>
 </head>
 <body>
     <script>
-        // Generate random number between 1 and 3 (adjust based on how many logos you have)
+        // Generate random number between 1 and 3
         const randomNum = Math.floor(Math.random() * 3) + 1;
         
-        // Create image element
-        const img = document.createElement('img');
-        
-        // Set the source to your GitHub Pages URL + random logo
-        img.src = `https://dogoooo.github.io/email-random-logo/logo${randomNum}.png`;
-        img.alt = 'Company Logo';
-        
-        // Add image to page
-        document.body.appendChild(img);
+        // Redirect directly to the random logo image
+        window.location.replace(`https://dogoooo.github.io/email-random-logo/logo${randomNum}.png`);
     </script>
+    
+    <!-- Fallback for clients that don't support JavaScript -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://dogoooo.github.io/email-random-logo/logo1.png">
+    </noscript>
 </body>
 </html>
