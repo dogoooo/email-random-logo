@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Random Logo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: transparent;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Generate random number between 1 and 10
+        const randomNum = Math.floor(Math.random() * 10) + 1;
+        
+        // Create image element
+        const img = document.createElement('img');
+        
+        // Set the source to your GitHub Pages URL + random logo
+        // Replace 'YOUR-USERNAME' and 'YOUR-REPO-NAME' with your actual values
+        img.src = `https://dogoooo.github.io/email-random-logo/logo${randomNum}.png`;
+        img.alt = 'Company Logo';
+        
+        // Add image to page
+        document.body.appendChild(img);
+    </script>
+</body>
+</html>
