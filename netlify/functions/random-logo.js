@@ -1,19 +1,25 @@
 // netlify/functions/random-logo.js
 exports.handler = async () => {
-  // Pick 1, 2 or 3
+  // 1..6
   const n = Math.floor(Math.random() * 6) + 1;
 
-  // 👇 CHANGE THIS to your Netlify site (keep the https://)
+  // Your Netlify site URL (can also use process.env.URL if you have a custom domain)
   const base = 'https://lively-speculoos-b06e97.netlify.app';
 
-  // If your images are in /images, change to `${base}/images/logo${n}.png`
-  const url = `${base}/logo${n}.png`;
+  // Use Netlify's per-deploy id as a cache-busting query string
+  const v = process.env.DEPLOY_ID || process.env.COMMIT_REF || 'dev';
+
+  // Different URL each deploy => email proxies fetch fresh pixels
+  const url = `${base}/logo${n}.png?v=${encodeURIComponent(v)}`;
 
   return {
     statusCode: 302,
     headers: {
       Location: url,
-      'Cache-Control': 'no-cache, no-store, must-revalidate'
+      // These headers apply to the redirect response (fine to keep),
+      // but the real win is the versioned URL above.
+      'Cache-Control': 'no-store, no-cache, max-age=0, must-revalidate',
+      'Pragma': 'no-cache'
     }
   };
 };
